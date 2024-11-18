@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 from pathlib import Path
 import os
 from dotenv import find_dotenv, load_dotenv
+import dj_database_url
 
 
 load_dotenv(find_dotenv())
@@ -128,18 +129,25 @@ AUTH_USER_MODEL = 'accounts.User'
 # }
 
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': os.getenv("db_name"),
+#         'HOST': os.getenv("db_host"),
+#         'USER': os.getenv("db_user"),
+#         'PASSWORD': os.getenv("db_password"),
+#         'PORT': os.getenv("db_port")
+
+#     }
+# }
 DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': os.getenv("db_name"),
-            'HOST': os.getenv("db_host"),
-            'USER': os.getenv("db_user"),
-            'PASSWORD': os.getenv("db_password"),
-            'PORT': os.getenv("db_port")
+    'default': dj_database_url.config(
 
-        }
-    }
-
+        default=os.getenv("db_url"),
+        conn_max_age=600
+        
+    )
+}
 
 
 # Password validation
