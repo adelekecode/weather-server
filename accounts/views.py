@@ -12,6 +12,7 @@ from rest_framework_simplejwt.exceptions import TokenError
 from .serializers import *
 from rest_framework.pagination import LimitOffsetPagination
 from rest_framework import filters
+
 from django import dispatch
 from .models import *
 from config.weather import process_weather
