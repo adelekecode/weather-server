@@ -119,12 +119,27 @@ AUTH_USER_MODEL = 'accounts.User'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': os.getenv("db_name"),
+            'HOST': os.getenv("db_host"),
+            'USER': os.getenv("db_user"),
+            'PASSWORD': os.getenv("db_password"),
+            'PORT': os.getenv("db_port")
+
+        }
     }
-}
+
 
 
 # Password validation
